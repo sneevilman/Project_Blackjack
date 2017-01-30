@@ -60,6 +60,12 @@ int main() {
           "Low-Stakes Blackjack!"<<endl;
     
     do{
+        nStks=0;        //initialize game values
+        lStks=0;
+        hStks=0;
+        winings=0;
+        wins=0;
+        losses=0;
     cout<<  "1 - Blackjack\n"
             "2 - High-Stakes Blackjack\n"
             "3 - Low-Stakes Blackjack\n"
@@ -182,7 +188,7 @@ int main() {
                   cout<<"The dealer busts. You win!"<<endl;
                   wins++;
                   cash+=2*bet;
-                  winings+=2*bet;
+                  winings+=bet;
                   cout<<"Winnings: $"<<2*bet<<endl;
                   draw=false;
               }
@@ -199,7 +205,7 @@ int main() {
               cout<<"Winnings: $"<<2*bet<<endl;
               wins++;
               cash+=2*bet;
-              winings+=2*bet;
+              winings+=bet;
               draw=false;}
           if(score>21){cout<<"Busted!"<<endl;losses++;winings-=bet;draw=false;}
           if(score<21&&turn!=-2){
@@ -258,10 +264,10 @@ int main() {
               cout<<"Your score: "<<score<<endl;
               cout<<"Dealer's score: "<<dScore<<endl;
               if(score>dScore){cout<<"You win!"<<endl;
+                    cout<<"Winnings: $"<<2*bet<<endl;
                     wins++;
                     cash+=2*bet;
-                    cout<<"Winnings: $"<<2*bet<<endl;
-                    winings+=2*bet;}
+                    winings+=bet;}
               if(score<dScore){cout<<"The house wins!"<<endl;winings-=bet;
                     losses++;}
               if(score==dScore){
@@ -309,7 +315,7 @@ int main() {
         }
     }while(menu);
     //Output Located Here
-
+    cout<<"Thanks for playing!"<<endl;
     //Exit
     return 0;
 }
