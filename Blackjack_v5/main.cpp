@@ -24,13 +24,13 @@ void Rules();
 //Program Execution Begins Here
 int main() {
     //Declare and process variables
-    float          cash=0,
-                   bet=0,
-                   minBet,
-                   winings=0,
-                   lStks=0;
-    long           hStks=0;
-    short          nStks=0,
+    float          cash=0,      //money in $
+                   bet=0,       //inputted bet in $
+                   minBet,      //minimum bet
+                   winings=0,   //total winnings
+                   lStks=0;     //low stakes game
+    long           hStks=0;     //high stakes game
+    short          nStks=0,     //normal stakes game
                    deck=52,     //number of cards in deck
                    drawV,       //value of card drawn
                    hand,        //number of cards in hand
@@ -79,10 +79,13 @@ int main() {
         cin>>pckGame;
     }
     switch(pckGame){
-        case '1':nStks=500;break;
-        case '2':hStks=15000000;break;
+        case '1':nStks=500;break;       //set the initial cash value based on 
+        case '2':hStks=15000000;break;  //chosen game mode
         case '3':lStks=1.50;break;
     }
+        minBet=pckGame=='1'?20:         //set the minimum bet value
+        pckGame=='2'?500000:
+        pckGame=='3'?0.10:0;
     
         short dAce=0,d2=0,d3=0,d4=0,d5=0,d6=0,d7=0,d8=0,d9=0,d10=0, 
                 dJ=0,dQ=0,dK=0;    //tracks cards taken from the deck
@@ -104,9 +107,6 @@ int main() {
         stand=false;
         dStand=false;
         
-        minBet=pckGame=='1'?20:
-               pckGame=='2'?500000:
-               pckGame=='3'?0.10:0;
         
         cout<<"Your money: $"<<cash<<endl;
         cout<<"Place a bet."<<endl;
@@ -121,8 +121,8 @@ int main() {
         
       do {
           if (turn>0){hand++;}else{dHand++;}
-          if((dStand==false&&turn<0)||(stand==false&&turn>0)){
-          deck--;
+          if((dStand==false&&turn<0)||(stand==false&&turn>0)){      //if it's the user's turn and the user isn't standing,
+          deck--;                                                   //or if it's the dealer's turn and the dealer isn't standing
           viewHnd=false;
           do{
               crdType="Redraw";
